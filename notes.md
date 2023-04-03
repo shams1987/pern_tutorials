@@ -25,3 +25,10 @@ create a db.js file
 check example
 export instance in db.js
 import it in index.js
+
+## Client  (REACT)
+cd into project folder
+=> npx create-react-app client
+delete folders App.test.js logo.svg serviceWorker.js setupTests.js
+
+npm start  on client folder
