@@ -32,3 +32,13 @@ cd into project folder
 delete folders App.test.js logo.svg serviceWorker.js setupTests.js
 
 npm start  on client folder
+
+
+## Postgres
+use sql shell app     password shams1987
+for help    \?
+list database     \l
+Create database   CREATE DATABASE database_name
+\c databse_name will take you to the new database
+\d    will list all the tables in that database
+ 
