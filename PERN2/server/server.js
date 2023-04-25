@@ -5,6 +5,7 @@ const db = require("./db");
 
 const morgan = require("morgan");  // npm install morgan  but not necessary
 
+// create an instance of express 
 const app = express();
 
 app.use(cors());
@@ -32,7 +33,7 @@ app.get("/api/v1/restaurants", async (req, res) => {
 
 //Get a Restaurant
 app.get("/api/v1/restaurants/:id", async (req, res) => {
-  console.log(req.params.id);
+
 
   try {
     const restaurant = await db.query(
@@ -45,7 +46,7 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
       "select * from reviews where restaurant_id = $1",
       [req.params.id]
     );
-    console.log(reviews);
+
 
     res.status(200).json({
       status: "succes",
@@ -62,14 +63,12 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
 // Create a Restaurant
 
 app.post("/api/v1/restaurants", async (req, res) => {
-  console.log(req.body);
 
   try {
     const results = await db.query(
       "INSERT INTO restaurants (name, location, price_range) values ($1, $2, $3) returning *",
       [req.body.name, req.body.location, req.body.price_range]
     );
-    console.log(results);
     res.status(201).json({
       status: "succes",
       data: {
@@ -99,8 +98,7 @@ app.put("/api/v1/restaurants/:id", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  console.log(req.params.id);
-  console.log(req.body);
+
 });
 
 // Delete Restaurant
@@ -124,7 +122,6 @@ app.post("/api/v1/restaurants/:id/addReview", async (req, res) => {
       "INSERT INTO reviews (restaurant_id, name, review, rating) values ($1, $2, $3, $4) returning *;",
       [req.params.id, req.body.name, req.body.review, req.body.rating]
     );
-    console.log(newReview);
     res.status(201).json({
       status: "success",
       data: {
